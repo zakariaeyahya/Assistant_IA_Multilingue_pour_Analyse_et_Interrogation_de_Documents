@@ -35,26 +35,39 @@ Cette application de traitement audio et textuel, focalisée sur la langue maroc
 
 Ce chatbot utilise les informations contenues dans les fichiers PDF fournis pour répondre aux questions des utilisateurs, en s'appuyant sur des technologies de traitement du langage naturel, de traduction et de synthèse vocale.
 
-## Technologies utilisées
+## Technologies Utilisées
 
 ### Backend
 
 - ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) : Langage de programmation principal.
 - ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white) : Framework Python pour la création d'API RESTful.
-- ![Transformers](https://img.shields.io/badge/Transformers-FF9900?style=for-the-badge&logo=transformers&logoColor=white) : Bibliothèque pour l'utilisation de modèles de traitement du langage naturel (NLP).
-- ![PyPDF2](https://img.shields.io/badge/PyPDF2-FFD43B?style=for-the-badge&logo=python&logoColor=blue) : Bibliothèque pour l'extraction de texte à partir de fichiers PDF.
-- ![SoundFile](https://img.shields.io/badge/SoundFile-008080?style=for-the-badge&logo=soundfile&logoColor=white) : Bibliothèque pour la lecture et l'écriture de fichiers audio.
-- ![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white) : Bibliothèque pour le traitement numérique.
-- ![Librosa](https://img.shields.io/badge/Librosa-1F77B4?style=for-the-badge&logo=librosa&logoColor=white) : Bibliothèque pour le traitement du signal audio.
-
-
-### Frontend
-
 - ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white) : Framework Python pour la création d'applications web interactives.
+- ![PyPDF2](https://img.shields.io/badge/PyPDF2-FFD43B?style=for-the-badge&logo=python&logoColor=blue) : Bibliothèque pour l'extraction de texte à partir de fichiers PDF.
+- ![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white) : Bibliothèque pour le traitement numérique.
+- ![SoundFile](https://img.shields.io/badge/SoundFile-008080?style=for-the-badge&logo=soundfile&logoColor=white) : Bibliothèque pour la lecture et l'écriture de fichiers audio.
+- ![Librosa](https://img.shields.io/badge/Librosa-1F77B4?style=for-the-badge&logo=librosa&logoColor=white) : Bibliothèque pour le traitement du signal audio.
+- ![Transformers](https://img.shields.io/badge/Transformers-FF9900?style=for-the-badge&logo=transformers&logoColor=white) : Bibliothèque pour les modèles de traitement du langage naturel (NLP), utilisée pour la traduction et la conversion texte-parole.
+- ![LangChain](https://img.shields.io/badge/LangChain-00BFFF?style=for-the-badge&logo=langchain&logoColor=white) : Bibliothèque pour construire des applications d'intelligence artificielle conversationnelle.
+- ![Requests](https://img.shields.io/badge/Requests-FF5733?style=for-the-badge&logo=requests&logoColor=white) : Bibliothèque pour effectuer des requêtes HTTP.
+- ![Base64](https://img.shields.io/badge/Base64-9B59B6?style=for-the-badge&logo=base64&logoColor=white) : Module pour encoder et décoder les données en Base64.
+- ![IO](https://img.shields.io/badge/IO-34495E?style=for-the-badge&logo=io&logoColor=white) : Module pour manipuler les flux d'entrée/sortie.
+- ![OS](https://img.shields.io/badge/OS-2ECC71?style=for-the-badge&logo=os&logoColor=white) : Module pour interagir avec le système d'exploitation.
+- ![Tempfile](https://img.shields.io/badge/Tempfile-7D3C5C?style=for-the-badge&logo=tempfile&logoColor=white) : Module pour créer et utiliser des fichiers temporaires.
+- ![Logging](https://img.shields.io/badge/Logging-DC7633?style=for-the-badge&logo=logging&logoColor=white) : Module pour la journalisation des événements.
 
-### Autres
+### Modèles de Langage Pré-entraînés
+
+- ![Seamless M4T-v2](https://img.shields.io/badge/Seamless%20M4T-v2-9C27B0?style=for-the-badge&logo=facebook&logoColor=white) : Modèle de traduction et de conversion texte-parole développé par Facebook.
+
+### Outils et Technologies
 
 - ![FFMPEG](https://img.shields.io/badge/FFMPEG-007808?style=for-the-badge&logo=ffmpeg&logoColor=white) : Outil de traitement multimédia utilisé pour la conversion des fichiers audio.
+- ![Groq](https://img.shields.io/badge/Groq-FF5722?style=for-the-badge&logo=groq&logoColor=white) : API permettant d'interagir avec un système de questions-réponses basé sur des documents.
+
+### Infrastructure
+
+- ![Uvicorn](https://img.shields.io/badge/Uvicorn-6C63FF?style=for-the-badge&logo=uvicorn&logoColor=white) : Serveur ASGI (Asynchronous Server Gateway Interface) pour FastAPI.
+
 
 
 ## Configuration et Démarrage
