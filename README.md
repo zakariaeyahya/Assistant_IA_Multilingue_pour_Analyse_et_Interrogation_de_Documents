@@ -89,7 +89,7 @@ source venv/bin/activate  # Sur Windows, utilisez `venv\Scripts\activate`
 4. Définissez le chemin d'accès à l'exécutable FFMPEG dans le fichier api/api_endpoints.py  :
 
     ```python
-    FFMPEG_PATH = r"C:\Users\HP\anaconda3\pkgs\ffmpeg-4.3.1-ha925a31_0\Library\bin\ffmpeg.exe"
+    FFMPEG_PATH = r"FFMPEG_PATH"
     ```
 
 5. Démarrez l'application FastAPI :
