@@ -20,11 +20,11 @@ logger = logging.getLogger(__name__)
 app = FastAPI()
 
 # Utilisez des raw strings pour les chemins Windows
-FFMPEG_PATH = r"C:\Users\HP\anaconda3\pkgs\ffmpeg-4.3.1-ha925a31_0\Library\bin\ffmpeg.exe"
+FFMPEG_PATH = r"FFMPEG_PATH"
 
 # Initialisation d'AudioProcessor avec vérification
 try:
-    audio_processor = AudioProcessor("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")
+    audio_processor = AudioProcessor("GROQ_API")
     logger.info("AudioProcessor successfully initialized in api_endpoints")
 except Exception as e:
     logger.error(f"Failed to initialize AudioProcessor: {str(e)}")
