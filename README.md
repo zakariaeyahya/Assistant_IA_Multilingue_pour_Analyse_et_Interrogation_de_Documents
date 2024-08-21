@@ -1,5 +1,5 @@
 # Darija Audio Processing Application
-![Uploading image.png…]()
+![image](https://github.com/user-attachments/assets/46c39672-9cfa-435f-9eac-f257f5337f29)# Darija Audio Processing Application
 
 ## Description
 
