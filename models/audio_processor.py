@@ -16,16 +16,10 @@ class AudioProcessor:
         self.llm = ChatGroq(model="llama-3.1-70b-versatile", temperature=0, groq_api_key=groq_api_key)
         logger.info("AudioProcessor initialized. Models loaded.")
         
-        # Vérification de l'initialisation
-        if hasattr(self.model_singleton, 'translator') and hasattr(self.model_singleton, 'speech_to_text') and hasattr(self.model_singleton, 'text_to_speech'):
-            logger.info("All components (translator, speech_to_text, text_to_speech) successfully initialized in AudioProcessor")
-        else:
-            logger.error("One or more components not found in ModelSingleton")
-
-    def process_text_to_audio(self, question, src_lang, pdf_lang, target_lang, pdf_path):
+    def process_text_to_audio(self, question, src_lang, pdf_lang, target_lang, pdf_paths):
         try:
-            pdf_content = extract_text_from_pdf(pdf_path)
-            logger.info(f"PDF content extracted: {pdf_content[:100]}...")  # Log first 100 chars
+            pdf_content = self._extract_multiple_pdfs(pdf_paths)
+            logger.info(f"PDF content extracted from {len(pdf_paths)} files")
             
             src_lang_code = get_language_code(src_lang)
             pdf_lang_code = get_language_code(pdf_lang)
@@ -48,10 +42,10 @@ class AudioProcessor:
             logger.error(f"Error in process_text_to_audio: {str(e)}", exc_info=True)
             return str(e), str(e), np.array([])
 
-    def process_audio_to_text(self, audio_array, audio_lang, pdf_lang, target_lang, pdf_path):
+    def process_audio_to_text(self, audio_array, audio_lang, pdf_lang, target_lang, pdf_paths):
         try:
-            pdf_content = extract_text_from_pdf(pdf_path)
-            logger.info(f"PDF content extracted: {pdf_content[:100]}...")  # Log first 100 chars
+            pdf_content = self._extract_multiple_pdfs(pdf_paths)
+            logger.info(f"PDF content extracted from {len(pdf_paths)} files")
             
             audio_lang_code = get_language_code(audio_lang)
             pdf_lang_code = get_language_code(pdf_lang)
@@ -59,7 +53,7 @@ class AudioProcessor:
             
             logger.info(f"Processing audio: shape={audio_array.shape}, dtype={audio_array.dtype}")
             transcription = self.model_singleton.speech_to_text.speech_to_text(audio_array, audio_lang_code)
-            logger.info(f"Transcription: {transcription[:100]}...")  # Log first 100 chars
+            logger.info(f"Transcription: {transcription[:100]}...")
             
             translated_transcription = self.model_singleton.translator.translate_text(transcription, audio_lang_code, pdf_lang_code) if audio_lang_code != pdf_lang_code else transcription
             logger.info(f"Translated transcription: {translated_transcription[:100]}...")
@@ -75,10 +69,10 @@ class AudioProcessor:
             logger.error(f"Error in process_audio_to_text: {str(e)}", exc_info=True)
             return str(e), str(e), str(e), str(e)
 
-    def process_audio_to_audio(self, audio_array, audio_lang, pdf_lang, target_lang, pdf_path):
+    def process_audio_to_audio(self, audio_array, audio_lang, pdf_lang, target_lang, pdf_paths):
         try:
             transcription, translated_transcription, response_pdf_lang, translated_response = self.process_audio_to_text(
-                audio_array, audio_lang, pdf_lang, target_lang, pdf_path
+                audio_array, audio_lang, pdf_lang, target_lang, pdf_paths
             )
             
             target_lang_code = get_language_code(target_lang)
@@ -90,10 +84,10 @@ class AudioProcessor:
             logger.error(f"Error in process_audio_to_audio: {str(e)}", exc_info=True)
             return str(e), str(e), str(e), str(e), np.array([])
 
-    def process_text_to_text(self, question, src_lang, pdf_lang, target_lang, pdf_path):
+    def process_text_to_text(self, question, src_lang, pdf_lang, target_lang, pdf_paths):
         try:
-            pdf_content = extract_text_from_pdf(pdf_path)
-            logger.info(f"PDF content extracted: {pdf_content[:100]}...")  # Log first 100 chars
+            pdf_content = self._extract_multiple_pdfs(pdf_paths)
+            logger.info(f"PDF content extracted from {len(pdf_paths)} files")
             
             src_lang_code = get_language_code(src_lang)
             pdf_lang_code = get_language_code(pdf_lang)
@@ -113,13 +107,20 @@ class AudioProcessor:
             logger.error(f"Error in process_text_to_text: {str(e)}", exc_info=True)
             return str(e), str(e)
 
+    def _extract_multiple_pdfs(self, pdf_paths):
+        combined_content = ""
+        for path in pdf_paths:
+            content = extract_text_from_pdf(path)
+            combined_content += content + "\n\n"
+        return combined_content
+
     def _get_groq_response(self, question, context, lang):
         prompt = f"""
         Question traduite : {question}
         Contexte : {context}
 
         Vous êtes un assistant virtuel spécialisé dans la fourniture d'informations sur le projet décrit dans le contexte donné.
-        Votre rôle est de fournir des informations précises et pertinentes basées uniquement sur le contenu du PDF.
+        Votre rôle est de fournir des informations précises et pertinentes basées uniquement sur le contenu des PDFs fournis.
         Veuillez répondre à la requête de l'utilisateur en {lang} en utilisant uniquement les informations disponibles dans le contexte.
         Si l'information pour répondre à la question n'est pas présente dans le contexte, veuillez l'indiquer clairement.
         """
