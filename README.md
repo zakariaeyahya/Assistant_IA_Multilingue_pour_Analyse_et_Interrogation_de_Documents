@@ -1,4 +1,5 @@
 # Darija Audio Processing Application
+![Uploading image.png…]()
 
 ## Description
 
