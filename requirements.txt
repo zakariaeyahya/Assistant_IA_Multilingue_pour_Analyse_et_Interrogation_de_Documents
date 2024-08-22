@@ -1,6 +1,6 @@
 torch
 distutils
-streamlit
+streamlit==1.20.0
 torchaudio
 transformers
 langchain-groq==0.1.6
@@ -12,7 +12,6 @@ sentencepiece
 sentence_transformers
 uvicorn
 fastapi
-streamlit
 python-multipart
 python-dotenv
 fastapi
