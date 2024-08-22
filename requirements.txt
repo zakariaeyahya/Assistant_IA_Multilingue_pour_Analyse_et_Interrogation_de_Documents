@@ -1,6 +1,5 @@
---upgrade pip
---upgrade setuptools
 torch
+streamlit
 torchaudio
 transformers
 langchain-groq==0.1.6
