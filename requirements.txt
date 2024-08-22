@@ -1,5 +1,4 @@
 torch
-distutils
 streamlit==1.20.0
 torchaudio
 transformers
@@ -7,15 +6,12 @@ langchain-groq==0.1.6
 PyPDF2
 sounddevice
 scipy
-numpy==1.24.1 
+numpy==1.24.1
 sentencepiece
 sentence_transformers
 uvicorn
 fastapi
 python-multipart
 python-dotenv
-fastapi
-uvicorn
 streamlit_option_menu
 soundfile
-scipy
