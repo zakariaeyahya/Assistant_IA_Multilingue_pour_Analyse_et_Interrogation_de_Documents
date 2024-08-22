@@ -1,13 +1,13 @@
 torch
 distutils 
-streamlit==1.20.0
+streamlit
 torchaudio
 transformers
-langchain-groq==0.1.6
+langchain-groq
 PyPDF2
 sounddevice
 scipy
-numpy==1.24.1
+numpy
 sentencepiece
 sentence_transformers
 uvicorn
