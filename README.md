@@ -110,7 +110,10 @@ source venv/bin/activate  # Sur Windows, utilisez `venv\Scripts\activate`
     streamlit run audio_processing_app.py
     ```
 
-    L'application sera accessible à l'adresse [http://localhost:8501](http://localhost:8501).
+7.Accédez à l'application Streamlit via votre navigateur à l'adresse [http://localhost:8501](http://localhost:8501).
+
+🌌 [Visitez l'application](http://localhost:8501)  
+✨ [Demander une fonctionnalité](https://github.com/zakariaeyahya/pdf)
 
 ## Contribution
 
