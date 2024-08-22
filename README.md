@@ -2,7 +2,7 @@
   <div class="document">
     <div class="document-header">
       <h1>Darija Audio Processing Application</h1>
-      <img src="https://github.com/user-attachments/assets/46c39672-9cfa-435f-9eac-f257f5337f29" alt="image">
+      <img src="https://github.com/user-attachments/assets/ef7cfacb-3647-4c70-9cc9-bb184fde2724" alt="image">
     </div>
     <div class="document-content">
       <h2>Description</h2>
