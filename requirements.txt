@@ -6,7 +6,7 @@ langchain-groq==0.1.6
 PyPDF2
 sounddevice
 scipy
-numpy==1.23.5
+numpy
 sentencepiece
 sentence_transformers
 uvicorn
