@@ -1,4 +1,5 @@
 torch
+distutils
 streamlit
 torchaudio
 transformers
