@@ -26,8 +26,8 @@ from controllers.text_to_text_controller import TextToTextController
 
 # Define the Groq API key and FFmpeg path
 GROQ_API_KEY = "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"
-FFMPEG_PATH = "FFMPEG_PATH"
-API_BASE_URL = "https://application-de-traitement-audio-texte44.streamlit.app"  # Adjust this to your API's address
+FFMPEG_PATH = "C:\\Users\\HP\\anaconda3\\pkgs\\ffmpeg-4.3.1-ha925a31_0\\Library\\bin\\ffmpeg.exe"
+API_BASE_URL = "http://localhost:8000"  # Adjust this to your API's address
 def normalize_audio(audio_array):
     if audio_array.size == 0:
         st.warning("Le tableau audio est vide.")
