@@ -195,25 +195,31 @@ def page_text_to_speech():
         6. Cliquez sur le bouton 'Convertir en Audio' pour lancer le processus.
         7. Une fois le traitement terminé, vous pourrez écouter l'audio généré directement dans l'application.
         """)
+# Modifiez les fonctions page_speech_to_text() et page_speech_to_speech() comme suit:
+
 def page_speech_to_text():
     st.markdown("### 🎙️ Speech to Text")
     
     audio_file = st.file_uploader("Téléchargez un fichier audio (WAV, MP3, OPUS)", type=["wav", "mp3", "opus"])
     audio_lang = st.selectbox("Langue de l'audio:", SUPPORTED_LANGUAGES)
-    pdf_lang = st.selectbox("Langue des documents PDF:", SUPPORTED_LANGUAGES)  # Ajout de cette ligne
+    pdf_lang = st.selectbox("Langue des documents PDF:", SUPPORTED_LANGUAGES)
     target_lang = st.selectbox("Langue de la transcription:", SUPPORTED_LANGUAGES)
     pdf_files = st.file_uploader("Téléchargez un ou plusieurs fichiers PDF de référence (optionnel)", type=["pdf"], accept_multiple_files=True)
 
     if st.button("🚀 Transcrire"):
         if audio_file:
             with st.spinner('Transcription de l\'audio en cours...'):
+                # Afficher l'audio d'entrée
+                st.markdown("### 🎵 Audio d'entrée:")
+                st.audio(audio_file, format=f"audio/{audio_file.type}")
+                
                 files = [('audio_file', (audio_file.name, audio_file.getvalue(), f'audio/{audio_file.type}'))]
                 if pdf_files:
                     files.extend([('pdf_files', (file.name, file.getvalue(), 'application/pdf')) for file in pdf_files])
                 
                 data = {
                     'audio_lang': audio_lang,
-                    'pdf_lang': pdf_lang,  # Modification de cette ligne
+                    'pdf_lang': pdf_lang,
                     'target_lang': target_lang
                 }
                 
@@ -239,6 +245,12 @@ def page_speech_to_text():
                         if 'translated_response' in result and audio_lang != target_lang:
                             st.markdown(f"### 🔄 Réponse traduite en {target_lang} :")
                             st.markdown(f'<div class="output-box">{result["translated_response"]}</div>', unsafe_allow_html=True)
+                        
+                        # Ajout de l'audio de sortie correspondant à la transcription
+                        if 'output_audio' in result:
+                            st.markdown(f"### 🔊 Audio de la transcription en {target_lang} :")
+                            audio_bytes = base64.b64decode(result["output_audio"])
+                            st.audio(audio_bytes, format="audio/wav")
                     else:
                         st.error(f"❌ Une erreur s'est produite lors de la transcription : {response.text}")
                 except requests.exceptions.RequestException as e:
@@ -246,37 +258,45 @@ def page_speech_to_text():
         else:
             st.warning("⚠️ Veuillez télécharger un fichier audio à transcrire.")
 
-    # Ajout d'informations supplémentaires
+    # Mise à jour des informations d'utilisation
     with st.expander("ℹ️ Comment utiliser cette fonctionnalité"):
         st.write("""
         1. Téléchargez un fichier audio (formats supportés : WAV, MP3, OPUS).
         2. Sélectionnez la langue de l'audio.
-        3. Choisissez la langue dans laquelle vous voulez que la transcription soit faite.
-        4. Sélectionnez la langue des documents PDF de référence .
+        3. Sélectionnez la langue des documents PDF de référence (si applicable).
+        4. Choisissez la langue dans laquelle vous voulez que la transcription soit faite.
         5. Si vous avez des documents PDF de référence, vous pouvez les télécharger (facultatif).
         6. Cliquez sur le bouton 'Transcrire' pour lancer le processus.
-        7. Une fois le traitement terminé, vous verrez la transcription originale et, si applicable, la traduction.
-        8. Si des PDF ont été fournis, vous pourrez également voir une réponse basée sur leur contenu.
+        7. Une fois le traitement terminé, vous pourrez :
+           - Écouter l'audio d'entrée original
+           - Voir la transcription originale et, si applicable, sa traduction
+           - Écouter l'audio généré correspondant à la transcription
+           - Voir une réponse basée sur les PDF fournis, si applicable
         """)
+
 def page_speech_to_speech():
     st.markdown("### 🎙️🔊 Speech to Speech")
     
     audio_file = st.file_uploader("Téléchargez un fichier audio (WAV, MP3, OPUS)", type=["wav", "mp3", "opus"])
     audio_lang = st.selectbox("Langue de l'audio d'entrée:", SUPPORTED_LANGUAGES)
-    pdf_lang = st.selectbox("Langue des documents PDF:", SUPPORTED_LANGUAGES)  # Ajout de cette ligne
+    pdf_lang = st.selectbox("Langue des documents PDF:", SUPPORTED_LANGUAGES)
     target_lang = st.selectbox("Langue de l'audio de sortie:", SUPPORTED_LANGUAGES)
     pdf_files = st.file_uploader("Téléchargez un ou plusieurs fichiers PDF de référence (optionnel)", type=["pdf"], accept_multiple_files=True)
 
     if st.button("🚀 Traiter et Convertir"):
         if audio_file:
             with st.spinner('Traitement de l\'audio en cours...'):
+                # Afficher l'audio d'entrée
+                st.markdown("### 🎵 Audio d'entrée:")
+                st.audio(audio_file, format=f"audio/{audio_file.type}")
+                
                 files = [('audio_file', (audio_file.name, audio_file.getvalue(), f'audio/{audio_file.type}'))]
                 if pdf_files:
                     files.extend([('pdf_files', (file.name, file.getvalue(), 'application/pdf')) for file in pdf_files])
                 
                 data = {
                     'audio_lang': audio_lang,
-                    'pdf_lang': pdf_lang,  # Modification de cette ligne
+                    'pdf_lang': pdf_lang,
                     'target_lang': target_lang
                 }
                 
@@ -316,17 +336,20 @@ def page_speech_to_speech():
         else:
             st.warning("⚠️ Veuillez télécharger un fichier audio à traiter.")
 
-    # Ajout d'informations supplémentaires
+    # Mise à jour des informations d'utilisation
     with st.expander("ℹ️ Comment utiliser cette fonctionnalité"):
         st.write("""
         1. Téléchargez un fichier audio (formats supportés : WAV, MP3, OPUS).
         2. Sélectionnez la langue de l'audio d'entrée.
-        3. Choisissez la langue dans laquelle vous voulez que l'audio de sortie soit généré.
-        4. Sélectionnez la langue des documents PDF de référence .
+        3. Sélectionnez la langue des documents PDF de référence (si applicable).
+        4. Choisissez la langue dans laquelle vous voulez que l'audio de sortie soit généré.
         5. Si vous avez des documents PDF de référence, vous pouvez les télécharger (facultatif).
         6. Cliquez sur le bouton 'Traiter et Convertir' pour lancer le processus.
-        7. Une fois le traitement terminé, vous verrez la transcription originale, sa traduction, et pourrez écouter l'audio généré dans la langue cible.
-        8. Si des PDF ont été fournis, vous pourrez également voir une réponse basée sur leur contenu, intégrée dans l'audio de sortie.
+        7. Une fois le traitement terminé, vous pourrez :
+           - Écouter l'audio d'entrée original
+           - Voir la transcription originale et sa traduction
+           - Écouter l'audio généré dans la langue cible
+           - Voir une réponse basée sur les PDF fournis, si applicable
         """)
 def page_a_propos():
     st.markdown("### 📚 À Propos de l'Application")
