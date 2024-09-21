@@ -73,7 +73,11 @@
   </div>
 </div>
 
+## Démonstration
 
+Pour voir l'application en action, consultez notre vidéo de démonstration :
+
+🎥 [Regarder la démo sur YouTube](https://youtu.be/A2uN9_NAvtY?si=R7QjWsKyCfbAydxJ)
 ## Configuration et Démarrage
 
 1. Clonez le dépôt GitHub :
