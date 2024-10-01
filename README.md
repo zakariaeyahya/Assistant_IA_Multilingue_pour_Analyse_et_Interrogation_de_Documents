@@ -5,6 +5,17 @@
       <img src="https://github.com/user-attachments/assets/ef7cfacb-3647-4c70-9cc9-bb184fde2724" alt="image">
     </div>
     <div class="document-content">
+      <p>
+        <a href="https://www.youtube.com/watch?v=A2uN9_NAvtY&t=78s">
+          <img src="https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="YouTube">
+        </a>
+        <a href="https://github.com/zakariaeyahya/Assistant_IA_Multilingue_pour_Analyse_et_Interrogation_de_Documents">
+          <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub">
+        </a>
+        <a href="https://www.linkedin.com/in/zakariae-yahya/">
+          <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn">
+        </a>
+      </p>
       <h2>Description</h2>
       <p>Cette application de traitement audio et textuel, focalisée sur la langue marocaine darija, permet à l'utilisateur d'effectuer diverses actions telles que la conversion de texte en audio, la transcription d'audio en texte, la traduction de texte et d'audio, et la conversion d'audio en audio avec traduction. C'est un chatbot conçu pour répondre aux questions des utilisateurs en utilisant les informations contenues dans les fichiers PDF fournis.</p>
       <h2>Table des matières</h2>
